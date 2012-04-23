@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    
+<ImageView android:id="@+id/appImgIcon"
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"
+   android:layout_alignParentLeft="true"
+   android:paddingTop="30sp"
+   android:paddingLeft="20sp"
+   android:paddingRight="15sp"
+   android:paddingBottom="30sp"
+   android:src="@drawable/appicon"
+   />
+<TextView android:id="@+id/label_languages"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="@string/languages"
+    android:textSize="15dip"
+    android:paddingTop="50sp"
+    android:layout_toRightOf="@+id/appImgIcon"/>
+    
+<Spinner android:id="@+id/Spinner01"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:paddingRight="20sp"
+	android:layout_centerHorizontal="true"
+	android:layout_toRightOf="@+id/appImgIcon"
+	android:layout_below="@+id/label_languages"
+	android:focusable="true" 
+    android:focusableInTouchMode="true" 
+	android:isScrollContainer="true"
+	android:prompt="@string/spinner_prompt"
+	/>
+
+<ToggleButton android:id="@+id/subs_togglebutton"
+	android:layout_width="150sp"
+	android:layout_height="wrap_content"
+	android:textOn="@string/sub_toggle_button_on"
+	android:textOff="@string/sub_toggle_button_off"
+	android:textSize="15dip"
+	android:layout_alignParentLeft="true"
+	android:layout_marginLeft="20sp"
+	android:layout_below="@+id/appImgIcon"/>
+        
+<ToggleButton android:id="@+id/ad_togglebutton"
+	android:layout_width="150sp"
+	android:layout_height="wrap_content"
+	android:textOn="@string/ad_toggle_button_on"
+	android:textOff="@string/ad_toggle_button_off"
+	android:textSize="15dip"
+	android:layout_centerHorizontal="true"
+    android:layout_below="@+id/appImgIcon"
+    android:layout_toRightOf="@+id/subs_togglebutton"
+    />	
+	
+<Button android:id="@+id/button"
+	android:layout_width="200sp"
+	android:layout_height="65sp"
+	android:text="@string/button_text"
+	android:textSize="15dip"
+	android:layout_below="@+id/appImgIcon"
+	android:layout_toRightOf="@+id/ad_togglebutton"
+	/>
+	
+</RelativeLayout>

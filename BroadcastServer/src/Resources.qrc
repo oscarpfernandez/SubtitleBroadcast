@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/splashbc.png</file>
+        <file>icons/appicon.png</file>
+        <file>icons/close_project.png</file>
+        <file>icons/open_project.png</file>
+        <file>icons/up.png</file>
+        <file>icons/down.png</file>
+        <file>icons/broadcastsubs.png</file>
+        <file>icons/start.png</file>
+        <file>icons/stop.png</file>
+    </qresource>
+</RCC>

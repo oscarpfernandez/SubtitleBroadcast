@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UAS</string>
+	<string name="menu_item_exit">Exit Application</string>
+    <string name="toast_message">Connecting to server.\nPlease wait...</string>
+    <string name="connection_msg">Receiving contents in %1$s.\nConnected to port %1$d</string>
+    <string name="languages">Select Language</string>
+    <string name="actorname">Actor</string>
+    <string name="subtitle">Subtitle</string>
+    <string name="audio_desc">Audio Description</string>
+    <string name="button_text">Start Session!</string>
+    <string name="spinner_prompt">Choose a Language</string>
+    <string name="sub_toggle_button_on">Audio Subtitles\nOn</string>
+	<string name="sub_toggle_button_off">Audio Subtitles\nOff</string>
+    <string name="ad_toggle_button_on">Audio Desc\nOn</string>
+	<string name="ad_toggle_button_off">Audio Desc\nOff</string>
+</resources>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    
+<!-- Removed from the GUI - AD not required...
+     The contents are STILL received on the mobile... we just don't show it.
+  	<TextView android:id="@+id/hline1"
+		android:layout_width="fill_parent" 
+		android:layout_height="2dip"
+		android:background="#FF00FF00"/>
+		
+	<TextView
+        android:id="@+id/label_ad"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/audio_desc"
+        android:layout_below="@+id/hline1"/>
+     <TextView
+        android:id="@+id/value_ad"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="..."
+		android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:layout_below="@+id/label_ad"/>
+-->
+    
+<!--<TextView android:id="@+id/hline2"
+		android:layout_width="fill_parent" 
+		android:layout_height="2dip"
+		android:background="#FF00FF00"
+		android:paddingTop="10sp"
+		android:layout_below="@+id/value_ad"/>
+    
+    <TextView
+        android:id="@+id/label_actorname"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/actorname"
+        android:layout_below="@+id/hline2"/>
+    
+	<TextView android:id="@+id/value_actorname"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:text="..." 
+		android:gravity="center_horizontal"
+        android:textSize="20sp"
+		android:layout_below="@+id/label_actorname" />
+		
+	<TextView android:id="@+id/hline3"
+		android:layout_width="fill_parent" 
+		android:layout_height="2dip"
+		android:background="#FF00FF00"
+		android:paddingTop="10sp"
+		android:layout_below="@+id/value_actorname" />
+ -->
+ 	<TextView android:id="@+id/hline3"
+		android:layout_width="fill_parent" 
+		android:layout_height="2dip"
+		android:background="#FF00FF00"
+		android:paddingTop="10sp"
+	/>
+ 			
+    <TextView
+        android:id="@+id/label_subtitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/subtitle"
+        android:layout_below="@+id/hline3"/>
+    <TextView
+        android:id="@+id/value_subtitle"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:textColor="#FFFF00"
+        android:gravity="center_horizontal|center_vertical"
+        android:textSize="24sp"
+        android:text=""
+        android:paddingTop="10sp"
+        android:layout_below="@+id/label_subtitle"/>
+        
+</RelativeLayout>

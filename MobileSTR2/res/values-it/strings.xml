@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UAS</string>
+    <string name="menu_item_exit">Uscita di Applicazione</string>
+	<string name="toast_message">Collegamento a servidor.\nPor attendere prego...</string>
+	<string name="connection_msg">Ricezione di contenuti in %1$s.\nCollegato alla porta %2$d</string>
+	<string name="languages">Scegli la Lingua</string>
+    <string name="actorname">Attore</string>
+    <string name="subtitle">Sottotitoli</string>
+    <string name="audio_desc">Audio Descrizione </string>
+	<string name="button_text">Iniziare la Sessione!</string>
+	<string name="spinner_prompt">Elija la Lengua</string>
+	<string name="sub_toggle_button_on">Audio Sottotitoli\nOn</string>
+	<string name="sub_toggle_button_off">Audio Sottotitoli\nOff</string>
+    <string name="ad_toggle_button_on">Audio Desc\nOn</string>
+    <string name="ad_toggle_button_off">Audio Desc\nOff</string>
+</resources>

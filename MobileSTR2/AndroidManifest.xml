@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.uab.mobilestr2"
+      android:versionCode="1"
+      android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="8" />
+
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.VIBRATE"/>
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+	<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+
+    <application android:icon="@drawable/appicon" android:label="@string/app_name">
+		<activity android:name=".MainActivity"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+		<activity android:name=".MobileSTR2Activity">
+            <intent-filter>
+                <action android:name="com.uab.mobile.action.START" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+		<service android:exported="false" android:name=".MusicService">
+            <intent-filter>
+                <action android:name="com.uab.mobilestr2.musicplayer.action.PLAY" />
+                <action android:name="com.uab.mobilestr2.musicplayer.action.PAUSE" />
+                <action android:name="com.uab.mobilestr2.musicplayer.action.SKIP" />
+                <action android:name="com.uab.mobilestr2.musicplayer.action.REWIND" />
+                <action android:name="com.uab.mobilestr2.musicplayer.action.STOP" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.uab.mobilestr2.musicplayer.action.URL" />
+                <data android:scheme="http" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".MusicIntentReceiver">
+            <intent-filter>
+                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
+            </intent-filter>
+        </receiver>
+        
+		<service android:exported="false" android:name=".HapticService">
+            <intent-filter>
+                <action android:name="com.uab.hapticservice.action.STOP" />
+                <action android:name="com.uab.hapticservice.action.START" />
+            </intent-filter>
+        </service>
+
+    </application>
+</manifest>
