@@ -18,10 +18,7 @@ mainwindow::mainwindow()
     isProjectOpened=false;
 
     projectConfigDialog = new ProjectSetUpConfig(this);
-//    connect(projectConfigDialog, SIGNAL(setProjectPath(QString&)),
-//            this, SLOT(setProjectPath(QString&)));
-//    connect(projectConfigDialog, SIGNAL(setProjectName(QString&)),
-//            this, SLOT(setProjectName(QString&)));
+
     connect(projectConfigDialog, SIGNAL(setProjectProperties(QMap<QString,QString>&)),
             this, SLOT(setProjectProperties(QMap<QString,QString>&)));
     connect(projectConfigDialog,SIGNAL(generateGUI()),
@@ -44,8 +41,8 @@ mainwindow::mainwindow()
     //    definir_directorios(directorio_default);
     //    inicializar_buffer();
 
-    langAudioGen = new AudioGeneratorConfig(this);
-    connect(langAudioGen, SIGNAL(startTTSAudioGeneration(QStringList&)), this, SLOT(startTTSAudioGeneration(QStringList&)));
+    //langAudioGen = new AudioGeneratorConfig(this);
+    //connect(langAudioGen, SIGNAL(startTTSAudioGeneration(QStringList&)), this, SLOT(startTTSAudioGeneration(QStringList&)));
 
 }
 
@@ -135,11 +132,11 @@ void mainwindow::createActions()
     importProjectAction->setDisabled(true);
     connect(importProjectAction, SIGNAL(triggered()), this, SLOT(importProject()));
 
-    generateAudioDescFromTTS = new QAction(tr("&Generate Sound Files..."),this);
-    generateAudioDescFromTTS->setIcon(QIcon(":/icons/audio.png"));
-    generateAudioDescFromTTS->setStatusTip(tr("Generate sound files from translated subtitles & audio descriptions using TTS system"));
-    generateAudioDescFromTTS->setDisabled(true);
-    connect(generateAudioDescFromTTS, SIGNAL(triggered()), this, SLOT(showMenuTTSConfig()));
+//    generateAudioDescFromTTS = new QAction(tr("&Generate Sound Files..."),this);
+//    generateAudioDescFromTTS->setIcon(QIcon(":/icons/audio.png"));
+//    generateAudioDescFromTTS->setStatusTip(tr("Generate sound files from translated subtitles & audio descriptions using TTS system"));
+//    generateAudioDescFromTTS->setDisabled(true);
+//    connect(generateAudioDescFromTTS, SIGNAL(triggered()), this, SLOT(showMenuTTSConfig()));
 
     loadSrtFileAction = new QAction(tr("&Load SRT File..."), this);
     loadSrtFileAction->setIcon(QIcon(":/icons/Importar.png"));
@@ -173,7 +170,7 @@ void mainwindow::createMainToolbar()
     toolsToolbar->addAction(showAudioRecorderDockAction);
     toolsToolbar->addSeparator();
     toolsToolbar->addAction(loadSrtFileAction);
-    toolsToolbar->addAction(generateAudioDescFromTTS);
+    //toolsToolbar->addAction(generateAudioDescFromTTS);
 
 }
 
@@ -193,8 +190,8 @@ void mainwindow::createMenus()
     menuTools->addSeparator();
     menuTools->addAction(importProjectAction);
     menuTools->addAction(exportProjectAction);
-    menuTools->addSeparator();
-    menuTools->addAction(generateAudioDescFromTTS);
+    //menuTools->addSeparator();
+    //menuTools->addAction(generateAudioDescFromTTS);
 
     menuWindows = menuBar()->addMenu(tr("&Windows"));
     menuWindows->addAction(closeCurrentEditorAction);
@@ -496,7 +493,7 @@ void mainwindow::disableActions(bool activate){
     exportProjectAction->setDisabled(activate);
     importProjectAction->setDisabled(activate);
     saveProjectAction->setDisabled(activate);
-    generateAudioDescFromTTS->setDisabled(activate);
+    //generateAudioDescFromTTS->setDisabled(activate);
     loadSrtFileAction->setDisabled(activate);
     showAudioRecorderDockAction->setDisabled(activate);
     showProjectDockPanelAction->setDisabled(activate);
@@ -634,81 +631,75 @@ void mainwindow::showDockableAudioRecorder()
  * Shows the configuration dialog for the generation of the sound files from
  * text, using the TTS system.
  ******************************************************************************/
-void mainwindow::showMenuTTSConfig()
-{
-    langAudioGen->setSupportedLanguages(supportedProjectLanguages);
-    langAudioGen->show();
-}
+//void mainwindow::showMenuTTSConfig()
+//{
+//    langAudioGen->setSupportedLanguages(supportedProjectLanguages);
+//    langAudioGen->show();
+//}
 
 
 /******************************************************************************
  * <SLOT>
  * Starts the generation of the sound files from text invoking the TTS system.
  ******************************************************************************/
-void mainwindow::startTTSAudioGeneration(QStringList &langsToGenerate)
-{
-    //Progress Dialog initalization
-    progressLabel = new QLabel();
-    progressLabel->setText(QString("Text-to-speech Audio Generation"));
-    progressLabel->setAlignment(Qt::AlignCenter);
+//void mainwindow::startTTSAudioGeneration(QStringList &langsToGenerate)
+//{
+//    //Progress Dialog initalization
+//    progressLabel = new QLabel();
+//    progressLabel->setText(QString("Text-to-speech Audio Generation"));
+//    progressLabel->setAlignment(Qt::AlignCenter);
 
 
-    progressDialog = new QProgressDialog(this);
-    progressDialog->setLabel(progressLabel);
-    progressDialog->setModal(true);
-    progressDialog->setAutoReset(false);
-    progressDialog->setAutoClose(false);
-    progressDialog->setCancelButton(0);
-    progressDialog->setFixedSize(350,100);
-    progressDialog->setMinimum(0);
-    //Num of langs * num of rows * (Subs + AD)
-    progressDialog->setMaximum(langsToGenerate.count()*NUMBEROFROWS*2);
-    progressDialog->show();
+//    progressDialog = new QProgressDialog(this);
+//    progressDialog->setLabel(progressLabel);
+//    progressDialog->setModal(true);
+//    progressDialog->setAutoReset(false);
+//    progressDialog->setAutoClose(false);
+//    progressDialog->setCancelButton(0);
+//    progressDialog->setFixedSize(350,100);
+//    progressDialog->setMinimum(0);
+//    //Num of langs * num of rows * (Subs + AD)
+//    progressDialog->setMaximum(langsToGenerate.count()*NUMBEROFROWS*2);
+//    progressDialog->show();
 
-    //Festival Generator Setup
-    FestivalAudioGenerator *festAudioGen = new FestivalAudioGenerator();
-    //    QString voice = QString("(voice_rab_diphone)");
-    //    festAudioGen->setVoiceName(voice);
+//    QString *dirPath = new QString;
+//    QString *subText = new QString;
+//    QString *fileName = new QString;
+//    QString *fullPath = new QString;
+//    QString *type = new QString("riff");
+//    QString *subAudioFilePrefix = new QString(PREFIX_SUB_AUDIO_FILE);
+//    QString *adAudioFilePrefix = new QString(PREFIX_AD_AUDIO_FILE);
 
-    QString *dirPath = new QString;
-    QString *subText = new QString;
-    QString *fileName = new QString;
-    QString *fullPath = new QString;
-    QString *type = new QString("riff");
-    QString *subAudioFilePrefix = new QString(PREFIX_SUB_AUDIO_FILE);
-    QString *adAudioFilePrefix = new QString(PREFIX_AD_AUDIO_FILE);
+//    for(int i=0; i < langsToGenerate.count(); i++)
+//    {
+//        dirPath->clear();
+//        dirPath->append(projectBasePath);
+//        dirPath->append(QString("/"));
+//        dirPath->append(QString(langsToGenerate.at(i)));
+//        dirPath->append(QString("/"+AUDIO_FOLDER_NAME+"/"));
 
-    for(int i=0; i < langsToGenerate.count(); i++)
-    {
-        dirPath->clear();
-        dirPath->append(projectBasePath);
-        dirPath->append(QString("/"));
-        dirPath->append(QString(langsToGenerate.at(i)));
-        dirPath->append(QString("/"+AUDIO_FOLDER_NAME+"/"));
+//        Subtitles *subtitle = supportedLangagesMap[langsToGenerate.at(i)]->sub;
 
-        Subtitles *subtitle = supportedLangagesMap[langsToGenerate.at(i)]->sub;
+//        QString voice = supportedLangagesMap[langsToGenerate.at(i)]->voiceName;
 
-        QString voice = supportedLangagesMap[langsToGenerate.at(i)]->voiceName;
-        festAudioGen->setVoiceName(voice);
-
-        subtitle->writeSoundFilesFromText(festAudioGen,progressDialog,
-                                          type,dirPath,subAudioFilePrefix,5);
-        subtitle->writeSoundFilesFromText(festAudioGen,progressDialog,
-                                          type,dirPath,adAudioFilePrefix,6);
+//        subtitle->writeSoundFilesFromText(progressDialog,
+//                                          type,dirPath,subAudioFilePrefix,5);
+//        subtitle->writeSoundFilesFromText(progressDialog,
+//                                          type,dirPath,adAudioFilePrefix,6);
 
 
-    }
-    progressDialog->close();
+//    }
+//    progressDialog->close();
 
-    delete(progressDialog);
-    delete(subAudioFilePrefix);
-    delete(adAudioFilePrefix);
-    delete(dirPath);
-    delete(fullPath);
-    delete(fileName);
-    delete(subText);
-    delete(type);
-}
+//    delete(progressDialog);
+//    delete(subAudioFilePrefix);
+//    delete(adAudioFilePrefix);
+//    delete(dirPath);
+//    delete(fullPath);
+//    delete(fileName);
+//    delete(subText);
+//    delete(type);
+//}
 
 /******************************************************************************
  * <SLOT>

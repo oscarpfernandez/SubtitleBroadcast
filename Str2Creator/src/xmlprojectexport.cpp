@@ -480,17 +480,17 @@ bool XMLProjectExport::readSubtitleXML(QTableWidget *subtitle,
                         << audioDesc << comment
                         << subSoundFileName << adSoundFileName;
 
-                qDebug("\t- index: "+index.toAscii()+
-                       "\n\t- entryTime: "+entryTime.toAscii()+
-                       "\n\t- exitTime: "+exitTime.toAscii()+
-                       "\n\t- pageNumber: "+pageNumber.toAscii()+
-                       "\n\t- actorName: "+actorName.toAscii()+
-                       "\n\t- originalSubText: "+originalSubText.toAscii()+
-                       "\n\t- transSubText: "+translatedSubText.toAscii()+
-                       "\n\t- audioDesc: "+audioDesc.toAscii()+
-                       "\n\t- comment: "+comment.toAscii()+
-                       "\n\t- subSoundFile: "+subSoundFileName.toAscii()+
-                       "\n\t- adSoundFileName: "+adSoundFileName.toAscii());
+                qDebug() <<"\t- index: " << index
+                       <<"\n\t- entryTime: " << entryTime
+                       <<"\n\t- exitTime: "<< exitTime
+                       <<"\n\t- pageNumber: " << pageNumber
+                       <<"\n\t- actorName: " << actorName
+                       <<"\n\t- originalSubText: " << originalSubText
+                       <<"\n\t- transSubText: " << translatedSubText
+                       <<"\n\t- audioDesc: " << audioDesc
+                       <<"\n\t- comment: " << comment
+                       <<"\n\t- subSoundFile: " << subSoundFileName
+                       <<"\n\t- adSoundFileName: "<< adSoundFileName;
 
                 for(int column=0; column<infoList.count(); column++){
                     if(column ==INDEX_SUBS_TRANSLATED_TEXT){

@@ -67,7 +67,7 @@ void Subtitles::initialize()
                 setItem(i , j , item);
                 setWordWrap(true);
             }
-            setRowHeight(i, 50);
+            setRowHeight(i, 90);
         }
     }
     setSortingEnabled(false);
@@ -129,8 +129,7 @@ void Subtitles::initialize()
  * - audioFileType: the audio file type to be generated (tipically a riff)-
  *
  ******************************************************************************/
-void Subtitles::writeSoundFilesFromText(FestivalAudioGenerator *festAudioGen,
-                                        QProgressDialog *progressDialog,
+void Subtitles::writeSoundFilesFromText(QProgressDialog *progressDialog,
                                         QString *fileType,
                                         QString *dirPath,
                                         QString *audioFilePrefixName,
@@ -176,8 +175,6 @@ void Subtitles::writeSoundFilesFromText(FestivalAudioGenerator *festAudioGen,
 
             fullPath = new QString(*dirPath);
             fullPath->append(waveFileName);
-
-            festAudioGen->generateAudioFile(subText,fullPath,fileType);
 
             /*
              * The generated file is a .wav type, very large in size, not good for streaming...
@@ -277,6 +274,7 @@ bool Subtitles::loadSRTArchive(QString &fileFullPath)
 
     QFile *file = new QFile(fileFullPath);
     QTextStream *inTextStream = new QTextStream(file);
+    inTextStream->setCodec("UTF-8");
 
     int index=0;//index of the SRT
     QString line;//current read line
@@ -300,7 +298,10 @@ bool Subtitles::loadSRTArchive(QString &fileFullPath)
 
         if(line.isEmpty() && index>0) {
             //write text on the table on row==index-1
-            item(index-1,INDEX_SUBS_ORIGINAL_TEXT)->setText(text);
+            QTextEdit* textEdit = (QTextEdit*)cellWidget(index-1, INDEX_SUBS_TRANSLATED_TEXT);
+            textEdit->setText(text);
+
+            //item(index-1,INDEX_SUBS_ORIGINAL_TEXT)->setText(text);
             item(index-1,INDEX_SUBS_START_TIME)->setText(startTime.trimmed());
             item(index-1,INDEX_SUBS_END_TIME)->setText(endTime.trimmed());
             //set start and stop time.
@@ -323,7 +324,7 @@ bool Subtitles::loadSRTArchive(QString &fileFullPath)
         }
         else{
             //is simple text
-            text.append(line);
+            text.append(line).append("\n");
         }
     }
 

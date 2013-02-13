@@ -22,7 +22,6 @@ SOURCES += main.cpp\
     subtitlelineviewer.cpp \
     xmlprojectexport.cpp \
     utils.cpp \
-    festivalaudiogenerator.cpp \
     audiogeneratorconfig.cpp \
     about.cpp
 
@@ -39,7 +38,6 @@ HEADERS  += mainwindow.h \
     xmlprojectexport.h \
     basetypes.h \
     utils.h \
-    festivalaudiogenerator.h \
     audiogeneratorconfig.h \
     about.h
 
@@ -50,20 +48,20 @@ QT += multimedia
 QT += phonon
 QT += xml
 
-INCLUDEPATH += "/usr/include/speech_tools"
-INCLUDEPATH += "/usr/include/festival"
+#INCLUDEPATH += "/usr/include/speech_tools"
+#INCLUDEPATH += "/usr/include/festival"
 #LIBS += -L"/usr/lib/speech_tools/lib/libestools.a"
 #LIBS += -L"/usr/lib/speech_tools/lib/libestbase.a"
 #LIBS += -L"/usr/lib/speech_tools/lib/libeststring.a"
-LIBS += -L"/usr/lib/speech_tools/lib"
-LIBS += -lestools
-LIBS += -lestbase
-LIBS += -leststring
+#LIBS += -L"/usr/lib/speech_tools/lib"
+#LIBS += -lestools
+#LIBS += -lestbase
+#LIBS += -leststring
 #LIBS += -L"/usr/lib/libFestival.a"
-LIBS += -L"/usr/lib"
-LIBS += -lFestival
-LIBS += -lncurses
-LIBS += -lesd
-LIBS += -lpulse-simple
+#LIBS += -L"/usr/lib"
+#LIBS += -lFestival
+#LIBS += -lncurses
+#LIBS += -lesd
+#LIBS += -lpulse-simple
 
 OTHER_FILES += \

@@ -30,8 +30,7 @@
 #include "sleeper.h"
 #include "basetypes.h"
 #include "utils.h"
-#include "festivalaudiogenerator.h"
-#include "audiogeneratorconfig.h"
+//#include "audiogeneratorconfig.h"
 #include "xmlprojectexport.h"
 #include "about.h"
 
@@ -56,7 +55,7 @@ private slots:
     void showDockableAudioRecorder();
     void exportProject();
     void importProject();
-    void showMenuTTSConfig();
+    //void showMenuTTSConfig();
     void loadSrtFileToActiveSubtitle();
     void showQTFrameworkInfo();
     void showAboutInfo();
@@ -64,7 +63,7 @@ private slots:
 public slots:
     void setSupportedLanguages(QStringList languages);
     void setProjectProperties(QMap<QString,QString> &props);
-    void startTTSAudioGeneration(QStringList &langsToGenerate);
+    //void startTTSAudioGeneration(QStringList &langsToGenerate);
 
 
 private:
@@ -98,7 +97,7 @@ private:
 
     QStringList supportedProjectLanguages;
 
-    AudioGeneratorConfig *langAudioGen;
+    //AudioGeneratorConfig *langAudioGen;
     QLabel *progressLabel;
     QProgressDialog *progressDialog;
 

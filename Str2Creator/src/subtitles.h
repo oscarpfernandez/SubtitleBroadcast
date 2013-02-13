@@ -8,12 +8,9 @@
 #include <QDomDocument>
 #include "subtitlelineviewer.h"
 #include "xmlprojectexport.h"
-#include "festivalaudiogenerator.h"
-
-
 
 #define NUMBEROFCOLUMS 10
-#define NUMBEROFROWS 2000
+#define NUMBEROFROWS 2500
 
 class Subtitles : public QTableWidget
 {
@@ -23,8 +20,7 @@ public:
     Subtitles(QWidget *parent = 0);
 
     void initialize();
-    void writeSoundFilesFromText(FestivalAudioGenerator *festAudioGen,
-                                 QProgressDialog *progressDialog,
+    void writeSoundFilesFromText(QProgressDialog *progressDialog,
                                  QString *fileType,
                                  QString *dirPath,
                                  QString *audioFilePrefixName,
