@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <project.details project.name="LayerCake Movie" project.description="The fantastic Layer Cake Description!" creation.time="Tue Feb 12 21:13:51 2013" last.modification.time="Tue Feb 12 21:13:51 2013"/>
+    <languages>
+        <language name="english" audio.subs="false" audio.ad="false"/>
+        <language name="spanish" audio.subs="false" audio.ad="false"/>
+    </languages>
+</project>
