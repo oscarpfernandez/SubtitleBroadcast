@@ -19,12 +19,12 @@ public class XMLContentParser {
 	private XmlPullParser xmlParser;
 
 	//XML Tags expected in the message from server...
-	private static final String SUBTITLE_LINE = "subtitleline"; 
-	private static final String SUBTITLE = "subtitle";
-	private static final String ACTOR = "actor";
-	private static final String AUDIO_DESC = "ad";
-	private static final String SUB_SOUND = "subsound";
-	private static final String AD_SOUND = "adsound";
+	private static final String SUBTITLE_LINE 	= "subtitleline"; 
+	private static final String SUBTITLE 		= "subtitle";
+	private static final String ACTOR 			= "actor";
+	private static final String AUDIO_DESC 		= "ad";
+	private static final String SUB_SOUND 		= "subsound";
+	private static final String AD_SOUND 		= "adsound";
 
 	public XMLContentParser(){
 		xmlParser = Xml.newPullParser();

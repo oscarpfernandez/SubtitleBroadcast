@@ -64,7 +64,7 @@ public class MobileSTR2Activity extends Activity {
         //adescTV = (TextView)findViewById(R.id.value_ad);
         //actorTV = (TextView)findViewById(R.id.value_actorname);
                 
-        udpConnHandler = new UDPConnectionHandler(this, languagePort, subtitleTV, adescTV, actorTV, 
+        udpConnHandler = new UDPConnectionHandler(this,language, languagePort, subtitleTV, adescTV, actorTV, 
         		isSubsSoundOn, isADSoundOn);
         
         udpConnHandler.startReceivingUDPMessages();
@@ -75,7 +75,7 @@ public class MobileSTR2Activity extends Activity {
         startService(new Intent(HapticService.ACTION_START));
                 
         //Toast notification to warn the user about the language...
-        String msg = String.format(getString(R.string.connection_msg), language.toUpperCase(), languagePort);
+        String msg = getString(R.string.connection_msg) + " Language " +language.toUpperCase()+ " on port " + languagePort;
         Toast t = Toast.makeText(this,msg, Toast.LENGTH_LONG);
         t.show();
     }

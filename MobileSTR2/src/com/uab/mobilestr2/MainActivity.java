@@ -37,10 +37,10 @@ public class MainActivity extends Activity {
 
 	private static final int LANGS_PORT = 27505;
 	
-	private static final String ENGLISH = "english";
-	private static final String CATALAN = "catalan";
-	private static final String ITALIAN = "italian";
-	private static final String SPANISH = "spanish";
+	public static final String ENGLISH = "english";
+	public static final String CATALAN = "catalan";
+	public static final String ITALIAN = "italian";
+	public static final String SPANISH = "spanish";
 	
 	private static int ENGLISH_PORT = 27500;
 	private static int SPANISH_PORT = 27501;

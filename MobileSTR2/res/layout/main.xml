@@ -58,7 +58,7 @@
 	android:paddingTop="30sp"
 	android:text="@string/button_text" 
 	android:layout_centerHorizontal="true"
-	android:textSize="15dip"
+	android:textSize="25dip"
 	android:layout_below="@+id/ad_togglebutton"/>
 		
 </RelativeLayout>

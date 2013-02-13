@@ -33,6 +33,7 @@ public class UDPConnectionHandler {
 	// handler for callbacks to the UI thread
     private final Handler mHandler = new Handler();
 	
+	private String language;
 	private int port;
 	private TextView subtitleTV;
 	private TextView adescTV;
@@ -41,22 +42,29 @@ public class UDPConnectionHandler {
 	
 	private boolean isSubsSoundOn;
 	private boolean isADSoundOn;
+	
+	private TtsGenerator ttsGen;
 		
 	public UDPConnectionHandler(Activity context,
-			int portNumber, 
+			String languageName, 
+			int languagePort,
 			TextView subtitles,
 			TextView adescription,
 			TextView actor,
 			boolean subSoundOn,
 			boolean adSoundOn)
 	{
-		port = portNumber;
+		port = languagePort;
+		language = languageName;
 		subtitleTV = subtitles;
 		adescTV = adescription;
 		actorTV = actor;
 		contextActivity = context;
 		isSubsSoundOn = subSoundOn;
 		isADSoundOn = adSoundOn;
+		
+		ttsGen = new TtsGenerator(context);
+		ttsGen.setLanguage(language);
 	}
 	
 	
@@ -130,7 +138,11 @@ public class UDPConnectionHandler {
 		}
 		allWorkDone = true;
 		
-		stopMusicService();
+		//stopMusicService();
+		
+		//Stop TTS
+		ttsGen.shutdown();
+
 	}
 	
 	private void updateResultsInUi(){
@@ -167,14 +179,16 @@ public class UDPConnectionHandler {
 			adescTV.postInvalidate();
 		}
 		
-		if(!(subLine.getSubtitleSound().length()==0) && isSubsSoundOn){
+		if(subLine.getSubtitle().length()!=0 && isSubsSoundOn){
 			Log.i("MusicService","url="+subLine.getSubtitleSound());
-			setURLAudioAndStartMusicService(subLine.getSubtitleSound());
+			ttsGen.generateTTSpeech(language, subLine.getSubtitle());
+			//setURLAudioAndStartMusicService(subLine.getSubtitleSound());
 		}
 		
-		if(!(subLine.getAudioDescSound().length()==0) && isADSoundOn){
+		if( subLine.getAudioDesc().length()!=0 && isADSoundOn){
 			Log.i("MusicService","url="+subLine.getSubtitleSound());
-			setURLAudioAndStartMusicService(subLine.getAudioDescSound());
+			ttsGen.generateTTSpeech(language, subLine.getAudioDesc());
+			//setURLAudioAndStartMusicService(subLine.getAudioDescSound());
 		}
 	}
 	
