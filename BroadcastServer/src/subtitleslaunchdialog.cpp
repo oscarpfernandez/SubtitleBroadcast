@@ -167,8 +167,8 @@ void SubtitlesLaunchDialog::createElements()
     horizlayout->addWidget(subtileTableWidget);
     horizlayout->addLayout(verticallayout);
     verticallayout->addWidget(agridGroupBox);
-    verticallayout->addWidget(mgridGroupBox);
     verticallayout->addWidget(langSelectionGroupBox);
+    verticallayout->addWidget(mgridGroupBox);
 
     sButton = new QPushButton(tr("Start"));
     QObject::connect(sButton, SIGNAL(clicked()),this, SLOT(startAutoTimer()));
@@ -182,10 +182,10 @@ void SubtitlesLaunchDialog::createElements()
     aLayout->addWidget(sButton,0,0,Qt::AlignLeft);
     aLayout->addWidget(pButton,1,0,Qt::AlignLeft);
     aLayout->addWidget(qButton,2,0,Qt::AlignLeft);
-    aLayout->addWidget(lTimer,3,0,Qt::AlignLeft);
+    aLayout->addWidget(lTimer,1,1,Qt::AlignLeft);
     aLayout->addWidget(totalLines,4,0,Qt::AlignLeft);
     agridGroupBox->setLayout(aLayout);
-    agridGroupBox->setFixedWidth(200);
+    //agridGroupBox->setFixedWidth(200);
 
     mLayout = new QGridLayout;
     sendSubsButton = new QPushButton;
@@ -386,7 +386,7 @@ void SubtitlesLaunchDialog::loadDataToTableWidget(QMap<int,SubtitleLineData*> *s
         const QString subSound  = QString(data->subtitleSoundFile->toAscii());
         const QString adSound   = QString(data->audioDescSoundFile->toAscii());
 
-        qDebug("SubtitleData index = "+QString::number(i).toAscii()+
+        /*qDebug("SubtitleData index = "+QString::number(i).toAscii()+
                "\n\tinitTime = "+initTime.toAscii()+
                "\n\tendTime = "+endTime.toAscii()+
                "\n\tpage = "+page.toAscii()+
@@ -396,7 +396,7 @@ void SubtitlesLaunchDialog::loadDataToTableWidget(QMap<int,SubtitleLineData*> *s
                "\n\taudioDesc = "+audioDesc.toAscii()+
                "\n\tcomment = "+comment.toAscii()+
                "\n\tsubSound = "+subSound.toAscii()+
-               "\n\tadSound = "+adSound.toAscii());
+               "\n\tadSound = "+adSound.toAscii());*/
 
         if(data != 0){
             subtileTableWidget->item(i,0)->setText(initTime);
@@ -630,7 +630,7 @@ void SubtitlesLaunchDialog::setRunningTimer(int timeInMilis)
     int milisElapsed = clockTime.elapsed();
 
     totalTimeCount = timeInMilis;
-    QString sTime = createFormattedTimeStamp(milisElapsed);
+    QString sTime = createFormattedTimeStamp(timeInMilis);
     lTimer->setText(sTime);
 }
 
@@ -975,7 +975,7 @@ void SubtitlesLaunchDialog::resetTimerCounterForNewStart(int index)
 
     int milis = convertTimeStampToMilis(timeStamp);
 
-    clockTime = QTime::fromString("timeStamp","hh:mm:ss,zzz");
+    clockTime = QTime::fromString(timeStamp,"hh:mm:ss,zzz");
     clockTime.start();
 
     setRunningTimer(milis);

@@ -352,7 +352,7 @@ bool XMLProjectReader::readSubtitleFromXML(QMap<int,SubtitleLineData*> *subtitle
 
                 subtitleDat->insert(index.toInt(), subLineDat);
 
-                qDebug("\t- index: "+index.toAscii()+
+                /*qDebug("\t- index: "+index.toAscii()+
                        "\n\t- entryTime: "+entryTime.toAscii()+
                        "\n\t- exitTime: "+exitTime.toAscii()+
                        "\n\t- pageNumber: "+pageNumber.toAscii()+
@@ -363,7 +363,7 @@ bool XMLProjectReader::readSubtitleFromXML(QMap<int,SubtitleLineData*> *subtitle
                        "\n\t- comment: "+comment.toAscii()+
                        "\n\t- subSoundFile: "+subSoundFileName.toAscii()+
                        "\n\t- adSoundFileName: "+adSoundFileName.toAscii()+
-                       "\n\t- xmlData: "+subLineDat->xmlData->toAscii());
+                       "\n\t- xmlData: "+subLineDat->xmlData->toAscii());*/
 
 
                 //go to the next xml line...

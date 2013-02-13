@@ -31,7 +31,7 @@ const int LANGUAGES_PORT = 27505;
 
 
 //Numer of table lines
-const int NUM_OF_ROWS = 2000;
+const int NUM_OF_ROWS = 2500;
 //Column in the translated text shows up...
 const int INDEX_SUBS_TRANSLATED_TEXT = 5;
 

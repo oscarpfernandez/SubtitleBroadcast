@@ -8,7 +8,7 @@ DEPENDPATH += .
 INCLUDEPATH += .
 
 # Input
-HEADERS += app_fcts.h displist.h \
+HEADERS += \
     constants.h \
     subtitleslaunchdialog.h \
     sleeper.h \
@@ -20,7 +20,7 @@ HEADERS += app_fcts.h displist.h \
     udpcontentserver.h \
     utils.h \
     udplanguagesserver.h
-SOURCES += app_fcts.c displist.cpp main.cpp \
+SOURCES += main.cpp \
     subtitleslaunchdialog.cpp \
     sleeper.cpp \
     xmlprojectreader.cpp \
