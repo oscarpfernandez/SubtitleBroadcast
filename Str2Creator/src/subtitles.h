@@ -28,7 +28,6 @@ public:
     bool saveSRT2Archive(QString &fullPathFileName,
                          QString &language);
     bool loadSRTArchive(QString &Nombre_Archivo);
-    void eraseLanguage(QString &Idioma_);
     QStringList* getTableHeaderXMLNames();
     QAction* getEditorAction();
 
@@ -40,15 +39,6 @@ private:
                           QString &language);
     bool writeSubtitleXMLDOM(QFile *file,
                              QString &language);
-
-public slots:
-    void loadAudiodescriptor(int indice_,
-                             QString nombre_,
-                             QString delay_);
-    void loadAudioSubtitle(int indice_,
-                           QString nombre_);
-    void addSRTArchive (QString Nombre_,
-                        QString Idioma_);
 
 signals:
     void setLanguageAndSoundFile(QString&, QString&);

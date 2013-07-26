@@ -9,5 +9,6 @@
         <file>icons/broadcastsubs.png</file>
         <file>icons/start.png</file>
         <file>icons/stop.png</file>
+        <file>icons/video_display.png</file>
     </qresource>
 </RCC>

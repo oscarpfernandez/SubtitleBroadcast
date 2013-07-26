@@ -19,7 +19,8 @@ HEADERS += \
     subtitledata.h \
     udpcontentserver.h \
     utils.h \
-    udplanguagesserver.h
+    udplanguagesserver.h \
+    subswideviswidget.h
 SOURCES += main.cpp \
     subtitleslaunchdialog.cpp \
     sleeper.cpp \
@@ -28,7 +29,8 @@ SOURCES += main.cpp \
     projectproperties.cpp \
     udpcontentserver.cpp \
     utils.cpp \
-    udplanguagesserver.cpp
+    udplanguagesserver.cpp \
+    subswideviswidget.cpp
 
 QT += network
 QT += xml

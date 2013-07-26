@@ -21,12 +21,14 @@
 #include "subtitleslaunchdialog.h"
 #include "projectproperties.h"
 #include "utils.h"
+#include "subswideviswidget.h"
 
 class mainwindow : public QMainWindow
 {
     Q_OBJECT
 public:
     explicit mainwindow(QWidget *parent = 0);
+    ~mainwindow();
 
 private:
     QAction *loadProjectAction;
@@ -37,6 +39,7 @@ private:
     QAction *automaticModeAction;
     QAction *startSessionAction;
     QAction *stopSessionAction;
+    QAction *showWideSubsAction;
     QMenu   *fileMenu;
     QMenu   *modeMenu;
     QMenu   *helpMenu;
@@ -51,7 +54,7 @@ private:
     QString projectPath;
     QString unixUsername;
 
-
+    SubsWideVisWidget *subsWideWidget;
 
     bool isSubtitleDataLoaded;
 
@@ -73,6 +76,7 @@ private slots:
     void enableModeMenu();
     void startBroadcastAction();
     void stopBroadcastAction();
+    void showWideSubtitles();
 
 };
 

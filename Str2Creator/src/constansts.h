@@ -33,6 +33,7 @@ const int INDEX_SUBS_START_TIME = 0;
 const int INDEX_SUBS_END_TIME = 1;
 const int INDEX_SUBS_ORIGINAL_TEXT = 4;
 const int INDEX_SUBS_TRANSLATED_TEXT = 5;
+const int INDEX_SUBS_AD = 6;
 const int INDEX_SUBS_AUDIO_SUB = 8;
 const int INDEX_SUBS_AUDIO_AD = 9;
 

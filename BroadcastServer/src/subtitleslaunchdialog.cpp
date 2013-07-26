@@ -76,18 +76,21 @@ void SubtitlesLaunchDialog::keyPressEvent(QKeyEvent *event)
         }
         update();
         break;
-        case Qt::Key_Down:
+    case Qt::Key_Delete:
+        broadCastContents(-1);
+        break;
+    case Qt::Key_Down:
         update();
         break;
-        case Qt::Key_Up:
+    case Qt::Key_Up:
         update();
         break;
-        case Qt::Key_Insert:
+    case Qt::Key_Insert:
         /* Send "shake" signal */
         broadCastHapticSignal();
         update();
         break;
-        default:
+    default:
         QWidget::keyPressEvent(event);
     }
 
@@ -155,9 +158,9 @@ void SubtitlesLaunchDialog::createElements()
     //    sep->setFrameStyle(QFrame::HLine | QFrame::Plain);
     stat_bar = new QStatusBar();
 
-    mainlayout = new QVBoxLayout(this);
-    horizlayout = new QHBoxLayout(this);
-    verticallayout = new QVBoxLayout(this);
+    mainlayout = new QVBoxLayout();
+    horizlayout = new QHBoxLayout();
+    verticallayout = new QVBoxLayout();
     aLayout = new QGridLayout;
     agridGroupBox = new QGroupBox(tr("Automatic controls"));
     agridGroupBox->setFixedHeight(250);
@@ -364,7 +367,7 @@ void SubtitlesLaunchDialog::setVisibleSubtitleTable(QString &lang)
 
 /******************************************************************************
  * Loads the data stored in the data structure to the GUI subtitle table.
- ******************************************************************************/
+ *****************************************************************QTextEdit *textEdit = new QTextEdit;*************/
 void SubtitlesLaunchDialog::loadDataToTableWidget(QMap<int,SubtitleLineData*> *subtitleDat)
 {
     qDebug("ENTRY SubtitlesLaunchDialog::loadDataToTableWidget");
@@ -469,6 +472,10 @@ void SubtitlesLaunchDialog::sendSubsButtonAction()
 
     broadCastContents(currentRow);
 
+    if(currentRow+1 < subtileTableWidget->rowCount()){
+        subtileTableWidget->selectRow(currentRow+1);
+    }
+
     totalLines->setText("Current Line: "+QString::number(currentRow+1));
 }
 
@@ -516,6 +523,16 @@ void SubtitlesLaunchDialog::stopBroadcastAction()
 void SubtitlesLaunchDialog::broadCastContents(int index)
 {
     qDebug("Entry SubtitlesLaunchDialog::broadCastContents index="+QString::number(index).toAscii());
+
+    QTextEdit* edit = static_cast<QTextEdit*>(subtileTableWidget->cellWidget(index, INDEX_SUBS_TRANSLATED_TEXT));
+    if(edit != 0 && index!=-1){
+        QString currentSub = edit->toPlainText();
+        emit broadcastedCurrentContent(currentSub);
+    }
+    else{
+        QString sub;
+        emit broadcastedCurrentContent(sub);
+    }
 
 
     if(availableLanguagesList.contains(CATALAN))

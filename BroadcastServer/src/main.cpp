@@ -21,16 +21,9 @@ int main(int argc, char *argv[])
   //SubtitlesLaunchDialog subldiag;
   mainwindow mainwin;
 
-  /*  if (argc < 2) {
-    std::cout << "usage: " << argv[0] << " <filename>\n";
-    exit(-1);
-    } */
-
   QSplashScreen *splash = new QSplashScreen;
   splash->setPixmap(QPixmap(":/icons/splashbc.png"));
   splash->show();
-
-//  Qt::Alignment topRight = Qt::AlignRight | Qt::AlignTop;
 
   splash->showMessage(QObject::tr("Loading Application..."),
                       Qt::AlignLeft | Qt::AlignTop, Qt::white);
@@ -41,17 +34,6 @@ int main(int argc, char *argv[])
 
   splash->finish(&mainwin);
   delete splash;
-
-
-  //Displist *dsplist = new Displist(0);
-  //SubtitlesLaunchDialog *subListDiag = new SubtitlesLaunchDialog;
-
-//  if (dsplist->getFailInit() == 1) {
-//    std::cout << "application init: socket creation failure\n";
-//    exit(-2);
-//  }
-
-  //subListDiag->show();
 
   return app.exec();
 }

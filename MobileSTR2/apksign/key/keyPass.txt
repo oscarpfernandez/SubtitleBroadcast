@@ -1,3 +1,0 @@
-#Password to use to during the APK singing process
-
-caiacuas01

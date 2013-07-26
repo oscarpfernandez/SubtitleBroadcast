@@ -3,7 +3,7 @@
     <string name="app_name">UAS</string>
     <string name="menu_item_exit">Salir de la aplicación</string>
     <string name="toast_message">Conectando con el servidor.\nPor favor espere...</string>
-    <string name="connection_msg">Recibiendo contenido en %1$s.\nConectado con el puerto %2$d</string>
+    <string name="connection_msg">Recibiendo contenidos...</string>
 	<string name="languages">Elija el Lenguage</string>
     <string name="actorname">Actor</string>
     <string name="subtitle">Subtitulos</string>

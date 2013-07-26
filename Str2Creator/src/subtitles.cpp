@@ -245,8 +245,6 @@ bool Subtitles::saveSRT2Archive(QString &languageDir, QString &language)
     return true;
 }
 
-
-
 // Función Abrir_Archivo. Abre un archivo srt o srt2.
 bool Subtitles::loadSRTArchive(QString &fileFullPath)
 {
@@ -282,6 +280,8 @@ bool Subtitles::loadSRTArchive(QString &fileFullPath)
     QString startTime;
     QString endTime;
 
+    bool isAD = false;
+
     if(!file->open(QFile::ReadOnly))
     {
         Utils::showWarningDialog(this, "Cannot open file. Check permissions!");
@@ -297,9 +297,16 @@ bool Subtitles::loadSRTArchive(QString &fileFullPath)
         int valueIndex = line.toInt(&okIsNumber);
 
         if(line.isEmpty() && index>0) {
-            //write text on the table on row==index-1
-            QTextEdit* textEdit = (QTextEdit*)cellWidget(index-1, INDEX_SUBS_TRANSLATED_TEXT);
-            textEdit->setText(text);
+
+            if(isAD){
+                item(index-1, INDEX_SUBS_AD)->setText(text);
+                isAD = false;
+            }
+            else{
+                //write text on the table on row==index-1
+                QTextEdit* textEdit = (QTextEdit*)cellWidget(index-1, INDEX_SUBS_TRANSLATED_TEXT);
+                textEdit->setText(text);
+            }
 
             //item(index-1,INDEX_SUBS_ORIGINAL_TEXT)->setText(text);
             item(index-1,INDEX_SUBS_START_TIME)->setText(startTime.trimmed());
@@ -323,6 +330,11 @@ bool Subtitles::loadSRTArchive(QString &fileFullPath)
             endTime = list.last();
         }
         else{
+            if(line.contains("<AD>")){
+                isAD = true;
+                line = line.replace("<AD>", "");
+            }
+
             //is simple text
             text.append(line).append("\n");
         }
@@ -332,169 +344,6 @@ bool Subtitles::loadSRTArchive(QString &fileFullPath)
 
     delete(inTextStream);
     delete(file);
-}
-
-//TO DO: rewrite this
-// Función Agregar_Archivo_SRT. Agrega texto de otro idioma a la tabla de subtítulos.
-void Subtitles::addSRTArchive(QString Nombre_, QString Idioma_)
-{
-
-    eraseLanguage(Idioma_);
-    int contador_campo = 0;
-    int contador_fila = 0;
-    int ultimo;
-
-    int tabla_size = 0;
-    QChar ultimochar;
-    QFile file(Nombre_);
-    QTextStream in(&file);
-    QString celda1;
-    QString celda2;
-    QString line;
-    QStringList list1;
-
-    QString marca1("<>");
-    marca1.insert(1,Idioma_);
-    QString marca2("</>");
-    marca2.insert(2,Idioma_);
-
-    int lineas_texto;
-    lineas_texto =1;
-    ultimo = Nombre_.size();
-    ultimochar = Nombre_.at(ultimo-1);
-
-    if ((ultimochar=='t')&&(file.open(QFile::ReadOnly))) {
-
-        while (!in.atEnd()) {
-            line = in.readLine();
-
-            if (contador_campo==1){
-                list1 = line.split(" --> ");
-                item(contador_fila,0)->setText(list1.at(0));
-                item(contador_fila,1)->setText(list1.at(1));
-            }
-
-            if (contador_campo==2){
-                celda1=item(contador_fila,2)->text();
-                line.prepend(marca1);
-                celda1.append(line);
-                item(contador_fila,2)->setText(celda1);
-            }
-
-            if (contador_campo==3){
-                celda1=item(contador_fila,2)->text();
-                celda2=line;
-                celda1.append(" ");
-                celda1.append(celda2);
-                celda1.append(marca2);
-                item(contador_fila,2)->setText(celda1);
-            }
-            contador_campo++;
-
-            if (line.isEmpty()==true){
-                contador_campo=0;
-                contador_fila++;
-                if (contador_fila==(rowCount()-1)){
-                    tabla_size = rowCount();
-                    insertRow(rowCount());
-                    for (int j = 0 ; j < 6 ; j++ )
-                        setItem((rowCount()-1 ), j , new QTableWidgetItem );
-                    tabla_size = rowCount();
-                }
-            }
-        }
-    }
-
-    setRowCount(contador_fila);
-    file.close();
-}
-
-//TO DO: rewrite this
-// Función Eliminar_Idioma. Elimina un idioma de subtítulos.
-void Subtitles::eraseLanguage(QString &Idioma_)
-{
-    QString subtitulos_aux;
-    QString string_aux;
-    QStringList lista1;
-    QStringList lista2;
-
-    QString marca1("<>");
-    marca1.insert(1,Idioma_);
-    QString marca2("</>");
-    marca2.insert(2,Idioma_);
-
-    subtitulos_aux = item(0,2)->text();
-    if (subtitulos_aux.contains(marca2))
-    {
-        for (int row =0; row<rowCount(); row++)
-        {
-            if(!item(row,1)->text().isEmpty())
-            {
-                subtitulos_aux = item(row,2)->text();
-                lista1 = subtitulos_aux.split(marca1);
-                string_aux = lista1.at(1);
-                lista2 = subtitulos_aux.split(marca2);
-                string_aux = lista1.at(0);
-                string_aux.append(lista2.at(1));
-                item(row, 2)->setText(string_aux);
-            }
-        }
-    }
-}
-
-//TO DO: rewrite this
-// Slot cargar_audiodescriptor. Agrega un audiodescriptor a la tabla de subtítulos.
-void Subtitles::loadAudiodescriptor(int indice_, QString nombre_,QString delay_)
-{
-    QString Audiodescriptores;
-    QString string_aux;
-    QStringList lista1;
-    QStringList lista2;
-
-    Audiodescriptores = item((indice_-1),5)->text();
-
-    if (Audiodescriptores.contains(nombre_.left(4)))
-    {
-        lista1 = Audiodescriptores.split(nombre_.left(4));
-        string_aux = lista1.at(1);
-        lista2 = string_aux.split(nombre_.right(5));
-        string_aux = lista1.at(0);
-        string_aux.append(lista2.at(1));
-        item((indice_ -1), 5)->setText(string_aux);
-    }
-
-    QString Celda_aux;
-    Celda_aux = item((indice_ -1),5)->text();
-    Celda_aux.append(nombre_);
-    item((indice_ -1),5)->setText(Celda_aux);
-    item((indice_ -1),4)->setText(delay_);
-}
-
-//TO DO: rewrite this
-// Slot cargar_audiodoblado. Agrega audio doblado para un índice dado.
-void Subtitles::loadAudioSubtitle(int indice_, QString nombre_)
-{
-    QString Audiodoblado;
-    QString string_aux;
-    QStringList lista1;
-    QStringList lista2;
-
-    Audiodoblado = item((indice_-1),3)->text();
-
-    if (Audiodoblado.contains(nombre_.left(4)))
-    {
-        lista1 = Audiodoblado.split(nombre_.left(4));
-        string_aux = lista1.at(1);
-        lista2 = string_aux.split(nombre_.right(5));
-        string_aux = lista1.at(0);
-        string_aux.append(lista2.at(1));
-        item((indice_ -1), 3)->setText(string_aux);
-    }
-
-    QString Celda_aux;
-    Celda_aux = item((indice_ -1),3)->text();
-    Celda_aux.append(nombre_);
-    item((indice_ -1),3)->setText(Celda_aux);
 }
 
 QAction* Subtitles::getEditorAction()

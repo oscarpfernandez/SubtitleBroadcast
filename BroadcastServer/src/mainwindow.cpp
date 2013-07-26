@@ -31,11 +31,15 @@ mainwindow::mainwindow(QWidget *parent) :
     connect(projectPropsDialog, SIGNAL(setLangAndLoadData(QString&)),
             this, SLOT(setLangAndLoadData(QString&)));
 
-    subLaunchDiag = new SubtitlesLaunchDialog(0);
+    subLaunchDiag = new SubtitlesLaunchDialog;
     connect(subLaunchDiag,SIGNAL(enableMainWindowMenus()),
             this,SLOT(enableModeMenu()));
     connect(subLaunchDiag,SIGNAL(sessionResumed()),
             this,SLOT(startBroadcastAction()));
+
+    subsWideWidget = new SubsWideVisWidget;
+    connect(subLaunchDiag, SIGNAL(broadcastedCurrentContent(QString&)),
+            subsWideWidget, SLOT(broadcastedCurrentContent(QString&)));
 
     createActions();
     createMenus();
@@ -43,6 +47,13 @@ mainwindow::mainwindow(QWidget *parent) :
 
     setCentralWidget(subLaunchDiag);
 
+}
+
+mainwindow::~mainwindow()
+{
+    subsWideWidget->close();
+    delete subLaunchDiag;
+    delete subsWideWidget;
 }
 
 void mainwindow::createActions()
@@ -99,6 +110,12 @@ void mainwindow::createActions()
     stopSessionAction->setIcon(QIcon(":/icons/stop.png"));
     stopSessionAction->setEnabled(false);
     connect(stopSessionAction,SIGNAL(triggered()), this ,SLOT(stopBroadcastAction()));
+
+    showWideSubsAction = new QAction(tr("Show Wide Subtitles"), this);
+    showWideSubsAction->setStatusTip(tr("Show Wide Subtitles Screen"));
+    showWideSubsAction->setEnabled(true);
+    showWideSubsAction->setIcon(QIcon(":/icons/video_display.png"));
+    connect(showWideSubsAction, SIGNAL(triggered()), this, SLOT(showWideSubtitles()));
 }
 
 void mainwindow::createMenus()
@@ -128,8 +145,10 @@ void mainwindow::createMainToolbar()
     mainToolbar->addSeparator();
     mainToolbar->addAction(startSessionAction);
     mainToolbar->addAction(stopSessionAction);
+    mainToolbar->addSeparator();
+    mainToolbar->addAction(showWideSubsAction);
     mainToolbar->addAction(helpAboutAction);
-    mainToolbar->addAction(exitAppAction);
+
 }
 
 /******************************************************************************
@@ -163,6 +182,8 @@ void mainwindow::loadProject()
 
     projectPath = fi.canonicalPath();
     availableLanguages = retrievedProps[STR_LANGUAGES].split(":");
+
+    subsWideWidget->setLangs(availableLanguages);
 
     qDebug("* Recovered project base path: "+projectPath.toAscii());
 
@@ -275,6 +296,12 @@ void mainwindow::stopBroadcastAction()
     automaticModeAction->setEnabled(false);
     startSessionAction->setEnabled(true);
     stopSessionAction->setEnabled(false);
+}
+
+//Slot
+void mainwindow::showWideSubtitles()
+{
+    subsWideWidget->show();
 }
 
 /******************************************************************************

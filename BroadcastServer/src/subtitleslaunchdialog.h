@@ -132,6 +132,7 @@ private slots:
 signals:
     void enableMainWindowMenus();
     void sessionResumed();
+    void broadcastedCurrentContent(QString& text);
 
 };
 
