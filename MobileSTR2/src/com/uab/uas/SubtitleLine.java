@@ -5,7 +5,7 @@
  * 
  * Developed by Oscar Lopes (C)2011 [Universidad Autònoma de Barcelona] 
  ******************************************************************************/
-package com.uab.mobilestr2;
+package com.uab.uas;
 
 public class SubtitleLine {
 

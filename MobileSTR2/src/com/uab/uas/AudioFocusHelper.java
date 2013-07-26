@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.uab.mobilestr2;
+package com.uab.uas;
 
 import android.content.Context;
 import android.media.AudioManager;

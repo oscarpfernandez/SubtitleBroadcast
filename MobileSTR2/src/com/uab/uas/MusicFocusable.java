@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.uab.mobilestr2;
+package com.uab.uas;
 
 /**
  * Represents something that can react to audio focus events. We implement this instead of just

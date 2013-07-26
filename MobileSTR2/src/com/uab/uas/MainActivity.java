@@ -1,4 +1,4 @@
-package com.uab.mobilestr2;
+package com.uab.uas;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

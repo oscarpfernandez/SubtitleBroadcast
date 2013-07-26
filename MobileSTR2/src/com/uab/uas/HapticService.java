@@ -1,4 +1,4 @@
-package com.uab.mobilestr2;
+package com.uab.uas;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
